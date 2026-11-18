@@ -1,0 +1,117 @@
+﻿@page "/frame"
+
+<PageTitle>Harbinger - Frame</PageTitle>
+
+<div class="frame-bg-color"></div>
+<div class="frame-bg">
+</div>
+<div class="frame-main">
+    <div class="frame-input-panel">
+        <div class="frame-input-panel-inputs-part">
+            <div class="frame-input-grp">
+                <div class="frame-input-label">Frame width (cm)</div>
+                <input type="number" step="0.01" min="5" max="1000" @bind="Session.FrameWidth" class="frame-input-panel-input" disabled="@(Session.IsDisabled)" />
+            </div>
+            <div class="frame-input-grp">
+                <div class="frame-input-label">Frame height (cm)</div>
+                <input type="number" step="0.01" min="5" max="1000" @bind="Session.FrameHeight" class="frame-input-panel-input" disabled="@(Session.IsDisabled)" />
+            </div>
+            <div class="frame-input-grp">
+                <div class="frame-input-label">Number of LEDs</div>
+                <input type="number" step="1" min="5" max="100" @bind="Session.NumberOfColumns" class="frame-input-panel-input" disabled="@(Session.IsDisabled)" />
+            </div>
+            <div class="frame-input-grp">
+                <div class="frame-input-label">Distance between LEDs (cm)</div>
+                <input type="number" step="0.01" min="5" max="1000" @bind="Session.DistanceBetweenLEDsCm" class="frame-input-panel-input" disabled="@(Session.IsDisabled)" />
+            </div>
+            <div class="frame-input-grp">
+                <div class="frame-input-label">Number of columns</div>
+                <input type="number" step="1" min="5" max="100" @bind="Session.NumberOfColumns" class="frame-input-panel-input" disabled="@(Session.IsDisabled)" />
+            </div>
+            <div class="frame-input-grp">
+                <div class="frame-input-label">Distance between columns (cm)</div>
+                <input type="number" step="0.01" min="5" max="1000" @bind="Session.DistanceBetweenColumnsCm" class="frame-input-panel-input" disabled="@(Session.IsDisabled)" />
+            </div>
+
+            <div class="frame-input-grp">
+                <div class="frame-input-label">Start corner</div>
+                <select class="frame-input-select" @bind="Session.SelectedCornerId" disabled="@(Session.IsDisabled)">
+                    @foreach (var opt in CornerOptions)
+                    {
+                        <option value="@opt.Id">@opt.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="frame-input-panel-multi-part">
+            <div class="frame-input-panel-type-container">
+                <div class="frame-input-panel-type-header">Columns</div>
+                <div class="frame-input-panel-type-entities">
+                    @foreach (var col in Session.Columns)
+                    {
+                        <div class="frame-input-panel-type-entity">
+                            <div class="frame-input-panel-type-input-group frame-input-panel-col-no-grp">
+                                <div class="frame-input-panel-type-label">Column No.</div>
+                                <input type="number" step="1" min="0" max="100" value="@col.ColumnIndex" disabled="disabled" class="frame-input-panel-type-input" />
+                            </div>
+                            <div class="frame-input-panel-type-input-group frame-input-panel-col-count-grp">
+                                <div class="frame-input-panel-type-label">No. of LEDs (incl. turn)</div>
+                                <input type="number" step="1" min="0" max="500" @bind="col.NumberOfLEDs" disabled="@(Session.IsDisabled)" class="frame-input-panel-type-input" />
+                            </div>
+                            <div class="frame-input-panel-type-input-group frame-input-panel-col-x-grp">
+                                <div class="frame-input-panel-type-label">X-coordinate</div>
+                                <input type="number" step="1" min="0" max="5000" @bind="col.XCoordinate" disabled="@(Session.IsDisabled)" class="frame-input-panel-type-input" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="frame-input-panel-type-container">
+                <div class="frame-input-panel-type-header">Turns</div>
+                <div class="frame-input-panel-type-entities">
+                    @foreach (var turn in Session.Turns)
+                    {
+                        <div class="frame-input-panel-type-entity">
+                            <div class="frame-input-panel-type-input-group frame-input-panel-turn-no-grp">
+                                <div class="frame-input-panel-type-label">Turn No.</div>
+                                <input class="frame-input-panel-type-input" type="number" step="1" min="0" max="100" value="@turn.TurnIndex" disabled="disabled" />
+                            </div>
+                            <div class="frame-input-panel-type-input-group  frame-input-panel-turn-led-index-grp">
+                                <div class="frame-input-panel-type-label">LED index</div>
+                                <input class="frame-input-panel-type-input" type="number" step="1" min="0" max="500" @bind="turn.LEDIndex" disabled="@(Session.IsDisabled)" />
+                            </div>
+                            <div class="frame-input-panel-type-input-group frame-input-panel-turn-coord-grp">
+                                <div class="frame-input-label-coord">Coordinates</div>
+                                <div class="frame-input-coord-inputs">
+                                    <div class="frame-input-coord-inputs-line">
+                                        <div class="frame-input-coord-inputs-line-header">X</div>
+                                        <div class="frame-input-coord-inputs-line-header">Y</div>
+                                    </div>
+                                    <div class="frame-input-coord-inputs-line">
+                                        <input type="number" step="1" min="0" max="5000" @bind="turn.XCoordinate" disabled="@(Session.IsDisabled)" class="frame-input-coord-xy-input" />
+                                        <input type="number" step="1" min="0" max="5000" @bind="turn.YCoordinate" disabled="@(Session.IsDisabled)" class="frame-input-coord-xy-input" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="frame-update-button-container">
+        <button 
+            class="frame-update-button frame-update-button-@(UpdateButtonClassAttr)" 
+            type="button" 
+            disabled="@UpdateButtonDisabledAttr"
+            @onclick="OnUpdateButtonClicked"
+        ></button>
+    </div>
+    @foreach(var strip in Session.StripVmo){
+        <FrameComponent Strip="@strip"></FrameComponent>
+    }
+
+</div>
+

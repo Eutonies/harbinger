@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+    <UserSecretsId>52346d4b-54d4-425d-a530-fbd24fd58839</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.24.2-preview.1" />
+  </ItemGroup>
+
+  
+    <ItemGroup>
+      <None Include="data/*" CopyToOutputDirectory="Always"/>
+      <None Update="Pages/Home/HomeFrameComponent.razor" CssScope="homeframe"></None>
+      <None Update="Pages/Home/HomeFrameComponent.razor.css" CssScope="homeframe"></None>
+      <None Update="Pages/Home/HomeHarbingerComponent.razor" CssScope="homeharbinger"></None>
+      <None Update="Pages/Home/HomeHarbingerComponent.razor.css" CssScope="homeharbinger"></None>
+      <None Update="Pages/Home/HomePlayingComponent.razor" CssScope="homeplaying"></None>
+      <None Update="Pages/Home/HomePlayingComponent.razor.css" CssScope="homeplaying"></None>
+      <None Update="Pages/Home/Home.razor" CssScope="home"></None>
+      <None Update="Pages/Home/Home.razor.css" CssScope="home"></None>
+      <None Update="Pages/Frame/FrameComponent.razor" CssScope="frame"></None>
+      <None Update="Pages/Frame/FrameComponent.razor.css" CssScope="frame"></None>
+    </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\" />
+    <Folder Include="data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Harbinger.Domain\Harbinger.Domain.csproj" />
+    <Compile Include="..\Harbinger.Domain\_GlobalUsings.Harbinger.cs"></Compile>
+
+  </ItemGroup>
+
+</Project>

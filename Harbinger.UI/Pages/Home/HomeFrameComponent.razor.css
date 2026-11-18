@@ -1,0 +1,44 @@
+﻿.harbinger-home-frame-container {
+    position: absolute;
+    top: 49.1%;
+    left: 45.5%;
+    aspect-ratio: 650 / 642;
+    width: 16.121%;
+    z-index: 7;
+}
+.harbinger-home-frame-bg {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-image: url('images/links/frame.webp');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.harbinger-home-frame-svg-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.harbinger-home-frame-svg-container:hover + .harbinger-home-frame-bg {
+    transform: scale(1.01);
+}
+
+.harbinger-home-frame-svg-container:hover {
+    transform: scale(1.01);
+}
+
+#harbinger-home-frame-svg {
+}
+
+#harbinger-home-frame-outline {
+    cursor: pointer;
+    stroke: pink;
+    stroke-width: 2px;
+}
+#harbinger-home-frame-svg:hover {
+}

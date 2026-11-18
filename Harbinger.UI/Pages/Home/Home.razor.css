@@ -1,0 +1,25 @@
+﻿.harbinger-bg {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    width: 100vw;
+    aspect-ratio: 4032/3024;
+    background-image: url('images/background.webp');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.harbinger-bg-cartoon {
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 5;
+    width: 100vw;
+    aspect-ratio: 4032/3024;
+    background-image: url('images/background-cartoon.webp');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}

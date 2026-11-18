@@ -1,0 +1,73 @@
+﻿.frame-component {
+    content: '';
+    position: absolute;
+    bottom: 0vh;
+    left: 5%;
+    width: 90%;
+    aspect-ratio: 1075 / 505;
+}
+
+.frame-bg {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url('images/frame/frames.webp');
+}
+
+.frame-content {
+    content: '';
+    position: absolute;
+    bottom: 6%;
+    left: 6%;
+    width: 90%;
+    height: 85%;
+    z-index: 10;
+}
+
+.frame-drawing {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 38%;
+    width: 54%;
+    height: 71%;
+    background-color: rgba(240,0,0,0.3);
+}
+
+#harbinger-frame-drawing-svg {
+    width: 100%;
+    height: 90%;
+    margin-top: 10%;
+}
+
+#harbinger-frame-drawing-path {
+    fill: none;
+    stroke: rgb(15,15,15);
+    stroke-width: 113px;
+}
+
+.frame-drawing-text {
+    font-size: 40rem;
+}
+.frame-drawing-text-col {
+    fill: rgb(100,250,101);
+}
+.frame-drawing-text-turn {
+    fill: rgb(100,200,200);
+}
+
+.frame-drawing-dot {
+
+}
+
+.frame-drawing-dot-turn {
+    fill: rgb(100,200,200);
+}
+
+.frame-drawing-dot-col {
+    fill: rgb(100,250,101);
+}

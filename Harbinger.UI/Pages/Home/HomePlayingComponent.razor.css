@@ -1,0 +1,44 @@
+﻿.harbinger-home-playing-container {
+    position: absolute;
+    top: 32.0%;
+    left: 7.2%;
+    aspect-ratio: 571 / 973;
+    width: 14.162%;
+    z-index: 10;
+}
+.harbinger-home-playing-bg {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-image: url('images/links/playing.webp');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.harbinger-home-playing-svg-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.harbinger-home-playing-svg-container:hover + .harbinger-home-playing-bg {
+    transform: scale(1.01);
+}
+
+.harbinger-home-playing-svg-container:hover {
+    transform: scale(1.01);
+}
+
+#harbinger-home-playing-svg {
+}
+
+#harbinger-home-playing-outline {
+    cursor: pointer;
+    stroke: pink;
+    stroke-width: 6px;
+}
+#harbinger-home-playing-svg:hover {
+}

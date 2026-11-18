@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Harbinger.Domain/Harbinger.Domain.csproj" />
+  <Project Path="Harbinger.Executor/Harbinger.Executor.csproj" Id="f03f3b0c-5a61-42dc-9e1e-4ecb879663fe" />
+  <Project Path="Harbinger.UI/Harbinger.UI.csproj" Id="b6ea3748-d427-459f-be58-ec1fb3ac0302" />
+</Solution>
