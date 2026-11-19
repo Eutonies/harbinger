@@ -6,6 +6,8 @@ using System.Text.RegularExpressions;
 
 using Harbinger.Domain.Util;
 
+using ImageMagick;
+
 namespace Harbinger.Domain.Model;
 
 public record HarbingerPixelColor(ushort Red, ushort Green, ushort Blue, ushort Alpha)
@@ -24,6 +26,16 @@ public record HarbingerPixelColor(ushort Red, ushort Green, ushort Blue, ushort 
 
 public static class HarbingerPixelColorExtensions
 {
+    public static HarPixCo ToHarbingerColor(this IMagickColor<ushort> col) => new HarPixCo(
+        Red: col.R.NormalizeMagickColorValue(), 
+        Green: col.G.NormalizeMagickColorValue(), 
+        Blue: col.B.NormalizeMagickColorValue(), 
+        Alpha: col.A.NormalizeMagickColorValue());
+
+    private const double UShortMaxD = ushort.MaxValue;
+    private const double TwoFittySizD = 256;
+    private static ushort NormalizeMagickColorValue(this ushort magshort) =>
+        Convert.ToUInt16(Math.Round((magshort / UShortMaxD) * TwoFittySizD));
 
     public static HarPixCo ToColor(this ushort[] arr) => arr.Length == 4 ? new HarPixCo(arr[0], arr[1], arr[2], arr[3]) : new HarPixCo(arr[0], arr[1], arr[2], 0);
 
