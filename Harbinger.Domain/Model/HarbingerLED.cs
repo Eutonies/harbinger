@@ -4,6 +4,6 @@ using System.Text;
 
 namespace Harbinger.Domain.Model;
 
-public record HarbingerLED(XY Coordinate, int Index) : IPlaceable
+public record HarbingerLED(XY Coordinate) : IPlaceable
 {
 }
