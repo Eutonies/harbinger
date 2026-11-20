@@ -6,3 +6,4 @@ global using GenTurn = Harbinger.Domain.Model.HarbingerStripGenerationInputTurn;
 
 global using HarDir = Harbinger.Domain.Model.HarbingerDirection;
 global using HarDirs = Harbinger.Domain.Model.HarbingerDirections;
+global using HarLoc = Harbinger.Domain.Model.HarbingerLocation;

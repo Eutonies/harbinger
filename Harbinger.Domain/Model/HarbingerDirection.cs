@@ -54,4 +54,17 @@ public static class HarbingerDirectionalExtensions
     public static XY StepDiagonalRightUp(this XY xy) => xy + HarDirs.RightUpwards;
     public static XY StepDiagonalRightDown(this XY xy) => xy + HarDirs.RightDownwards;
 
+    public static HarDir Opposite(this HarDir dir) => dir switch
+    {
+        HarDir.Down => HarDir.Up,
+        HarDir.Up => HarDir.Down,
+        HarDir.Left => HarDir.Right,
+        HarDir.Right => HarDir.Left,
+        HarDir.DiagonalDownLeft => HarDir.DiagonalUpRight,
+        HarDir.DiagonalUpRight => HarDir.DiagonalDownLeft,
+        HarDir.DiagonalDownRight => HarDir.DiagonalUpLeft,
+        HarDir.DiagonalUpLeft => HarDir.DiagonalDownRight,
+        _ => throw new ArgumentException($"What direction even is this?: {dir}!")
+    };
+
 }
