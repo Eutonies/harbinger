@@ -67,4 +67,46 @@ public static class HarbingerDirectionalExtensions
         _ => throw new ArgumentException($"What direction even is this?: {dir}!")
     };
 
+    public static HarLoc Vertical(this HarLoc loc) => loc switch
+    {
+        HarLoc.Top | HarLoc.TopLeftCorner | HarLoc.TopRightCorner => HarLoc.Top,
+        HarLoc.Bottom | HarLoc.BottomLeftCorner | HarLoc.BottomRightCorner => HarLoc.Bottom,
+        _ => throw new ArgumentException($"Talkin' 'bout vertical location for {loc} is pure nonsense!")
+    };
+    public static HarLoc Horizontal(this HarLoc loc) => loc switch
+    {
+        HarLoc.LeftSide | HarLoc.TopLeftCorner | HarLoc.BottomLeftCorner => HarLoc.LeftSide,
+        HarLoc.RightSide | HarLoc.BottomRightCorner | HarLoc.TopRightCorner => HarLoc.RightSide,
+        _ => throw new ArgumentException($"Talkin' 'bout horizontal location for {loc} is pure nonsense!")
+    };
+
+
+    public static HarLoc Opposite(this HarLoc dir) => dir switch
+    {
+        HarLoc.Top => HarLoc.Bottom,
+        HarLoc.Bottom => HarLoc.Top,
+        HarLoc.LeftSide => HarLoc.RightSide,
+        HarLoc.RightSide => HarLoc.LeftSide,
+        HarLoc.TopLeftCorner => HarLoc.BottomRightCorner,
+        HarLoc.BottomRightCorner => HarLoc.TopLeftCorner,
+        HarLoc.TopRightCorner => HarLoc.BottomLeftCorner,
+        HarLoc.BottomLeftCorner => HarLoc.TopRightCorner,
+        _ => throw new ArgumentException($"What location even is this?: {dir}!")
+    };
+
+    public static HarDir LeadsInto(this HarLoc loc) => loc switch
+    {
+        HarLoc.Top => HarDir.Up,
+        HarLoc.Bottom => HarDir.Down,
+        HarLoc.LeftSide => HarDir.Left,
+        HarLoc.RightSide => HarDir.Right,
+        HarLoc.TopLeftCorner => HarDir.DiagonalUpLeft,
+        HarLoc.BottomRightCorner => HarDir.DiagonalDownRight,
+        HarLoc.TopRightCorner => HarDir.DiagonalUpRight,
+        HarLoc.BottomLeftCorner => HarDir.DiagonalDownLeft,
+        _ => throw new ArgumentException($"What location even is this?: {loc}!")
+    };
+
+    public static HarDir LeadsAwayFrom(this HarLoc loc) => loc.LeadsInto().Opposite();
+
 }

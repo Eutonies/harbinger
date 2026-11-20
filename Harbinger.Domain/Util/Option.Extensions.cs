@@ -114,18 +114,6 @@ public static class OptionExtensions
     internal static Option<TVal> GetOption<TKey, TVal>(this IReadOnlyDictionary<TKey, TVal> inp, TKey key) where TKey : notnull =>
         inp.ContainsKey(key) ? Option.From(inp[key]) : Option.None<TVal>();
 
-    internal static Option<T> FirstOption<T>(this IEnumerable<T> inp) => inp.Any() ? Option.Some(inp.First()) : Option.None<T>();
-
-    internal static Option<T> FirstOption<T>(this IEnumerable<T> inp, Func<T, bool> predicate)
-    {
-        foreach (var ent in inp)
-        {
-            if (predicate(ent))
-                return Option.From(ent);
-        }
-        return Option.None<T>();
-    }
-
 
 
 
