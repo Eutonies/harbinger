@@ -101,6 +101,17 @@ public static class CollectionExtensions
         return (fst.ToReadOnly(), snd.ToReadOnly());
     }
 
+    public static ((IReadOnlyCollection<T> Coll, TDist Dist) First, (IReadOnlyCollection<T> Coll, TDist Dist) Second) Partition<T,TDist>(this IEnumerable<T> inp, Func<T, bool> pred, TDist distinguisherTrue, TDist distinguisherFalse)
+    {
+        var (fst, snd) = Tuples.InitTuple2(() => new List<T>());
+        foreach (var en in inp)
+            if (pred(en))
+                fst.Add(en);
+            else snd.Add(en);
+        return ((fst.ToReadOnly(), distinguisherTrue), (snd.ToReadOnly(), distinguisherFalse));
+    }
+
+
     public static (IReadOnlyCollection<T> First, IReadOnlyCollection<T> Second, IReadOnlyCollection<T> Third) Partition<T>(
         this IEnumerable<T> inp,
         Func<T, bool> predFirst,

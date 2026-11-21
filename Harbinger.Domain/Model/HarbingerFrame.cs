@@ -14,4 +14,10 @@ public record HarbingerFrame(int MinX, int MinY, int MaxX, int MaxY)
     public readonly int Width = MaxX - MinX;
     public readonly int Height = MaxY - MinY;
 
+    private decimal? _widthDecimal;
+    public decimal WidthDecimal => _widthDecimal ??= Width;
+
+    private decimal? _heightDecimal;
+    public decimal HeightDecimal => _heightDecimal ??= Height;
+
 }

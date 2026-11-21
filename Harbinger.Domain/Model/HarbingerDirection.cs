@@ -54,6 +54,30 @@ public static class HarbingerDirectionalExtensions
     public static XY StepDiagonalRightUp(this XY xy) => xy + HarDirs.RightUpwards;
     public static XY StepDiagonalRightDown(this XY xy) => xy + HarDirs.RightDownwards;
 
+
+    public static XY ToUnitVector(this HarDir dir) => dir switch {
+        HarDir.Down => HarDirs.Downwards,
+        HarDir.Up => HarDirs.Upwards,
+        HarDir.Left => HarDirs.Leftwards,
+        HarDir.Right => HarDirs.Rightwards,
+        HarDir.DiagonalDownLeft => HarDirs.LeftDownwards,
+        HarDir.DiagonalUpRight => HarDirs.RightUpwards,
+        HarDir.DiagonalDownRight => HarDirs.RightDownwards,
+        HarDir.DiagonalUpLeft => HarDirs.LeftUpwards,
+        _ => throw new ArgumentException($"What direction even is this?: {dir}!")
+
+
+    };
+
+    public static HarDir With(this HarDir first, HarDir second) => (first, second) switch
+    {
+        (HarDir.Up, HarDir.Left) => HarDir.DiagonalUpLeft,
+        (HarDir.Down, HarDir.Left) => HarDir.DiagonalDownLeft,
+        (HarDir.Up, HarDir.Right) => HarDir.DiagonalUpRight,
+        (HarDir.Down, HarDir.Right) => HarDir.DiagonalDownRight,
+        _ => throw new ArgumentException($"Cannot possible combine directions: {first} and {second}!")
+    };
+
     public static HarDir Opposite(this HarDir dir) => dir switch
     {
         HarDir.Down => HarDir.Up,
