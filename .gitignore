@@ -425,3 +425,5 @@ FodyWeavers.xsd
 # Official VS Code C# Dev Kit Extension exclusion
 #*.lscache
 /Harbinger.UI/design/stairs.xcf
+/Harbinger.UI/design/stairs-cartoon.xcf
+
