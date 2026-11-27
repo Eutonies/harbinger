@@ -1,4 +1,6 @@
-﻿using Harbinger.Domain.Util;
+﻿using System.Text.Json;
+
+using Harbinger.Domain.Util;
 
 namespace Harbinger.UI.Persistence.Strip;
 
@@ -19,6 +21,8 @@ public record HarbingerStripSmo(
 
 public static class HarbingerStripSmoExtensions
 {
+
+    private static readonly JsonSerializerOptions _jsonOpts = new JsonSerializerOptions { WriteIndented = true };
     public static HarStrip ToDomain(this HarbingerStripSmo strip) => new HarStrip(
         Frame: new HarFram(MinX: strip.FrameMinX, MinY: strip.FrameMinY, MaxX: strip.FrameMaxX, MaxY: strip.FrameMaxY),
         Links: strip.Columns
@@ -44,7 +48,31 @@ public static class HarbingerStripSmoExtensions
                 .Select(_ => _.ToSMO())
                 .ToArray()
         ));
+    public static Option<string> SavedFrameFile => Option.Some(PersistenceConstants.FrameFile)
+            .Where(File.Exists)
+            .Map(File.ReadAllText);
 
+    private static Option<int>? _savedFrameHash;
+    public static Option<int> SavedFrameHash => _savedFrameHash ??= SavedFrameFile
+        .MapVal(_ => _.ToStringId().GetHashCode());
+
+    public static void SaveFrame(HarStrip strip)
+    {
+        var jsonOpt = strip.ToSMO()
+            .ToOpt()
+            .Map(smo => JsonSerializer.Serialize(smo));
+        foreach(var json in jsonOpt)
+        {
+            var newHashCode = json.HashCode();
+            foreach (var oldJsHash in SavedFrameHash)
+                if (oldJsHash == newHashCode)
+                    return;
+            File.WriteAllText(PersistenceConstants.FrameFile, json);
+            _savedFrameHash = null;
+        }
+    }
+
+    private static int HashCode(this string str) => str.ToStringId().GetHashCode();
 }
 
 

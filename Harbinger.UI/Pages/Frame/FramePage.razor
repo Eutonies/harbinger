@@ -100,12 +100,18 @@
 
         </div>
     </div>
+    <div class="frame-save-button-container">
+        <button class="frame-save-button frame-save-button-@(UpdateButtonClassAttr)"
+                type="button"
+                disabled="@UpdateButtonDisabledAttr"
+                @onclick="OnUpdateButtonClicked"></button>
+    </div>
 
     <div class="frame-update-button-container">
         <button 
-            class="frame-update-button frame-update-button-@(UpdateButtonClassAttr)" 
+            class="@(SaveButtonClassAttr)" 
             type="button" 
-            disabled="@UpdateButtonDisabledAttr"
+            disabled="@(Session.DisabledAttr)"
             @onclick="OnUpdateButtonClicked"
         ></button>
     </div>

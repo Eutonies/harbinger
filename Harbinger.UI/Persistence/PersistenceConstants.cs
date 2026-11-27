@@ -4,5 +4,6 @@ public static class PersistenceConstants
 {
 
     public static readonly string DataFolder = $"{AppContext.BaseDirectory}/data";
+    public static readonly string FrameFile = $"{DataFolder}/frame.json";
 
 }

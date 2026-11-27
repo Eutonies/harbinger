@@ -1,4 +1,6 @@
-﻿namespace Harbinger.UI.Pages.Frame;
+﻿using Harbinger.Domain.Util;
+
+namespace Harbinger.UI.Pages.Frame;
 
 public partial class FramePage
 {
@@ -38,9 +40,18 @@ public partial class FramePage
         (_, true) => "disabled",
         _ => "pushable"
     };
+    private string SaveButtonClassAttr => ("disabled".Cipe(_ => Session.IsDisabled) ?? "available")
+        .Pipe(abl => "frame-save-button"
+            .Pipe(cls => $"{cls} {cls}-{abl}")
+        );
+        
+
+
 
     private string? UpdateButtonDisabledAttr => Session.DisabledAttr;
 
     private void OnUpdateButtonClicked() => _ = Session.UpdateFrame();
+
+    private void OnSaveButtonClicked() => _ = Session.UpdateFrame();
 
 }
